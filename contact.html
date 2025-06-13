@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav>
+    <div class="nav-section nav-logo">
+      <a href="index.html">
+        <img src="images/Screenshot 2025-06-04 145907.png" alt="TagTeam Signs Logo">
+      </a>
+    </div>
+
+    <div class="nav-section nav-links">
+      <a href="shop.html">SHOP</a>
+      <a href="custom.html">CUSTOM</a>
+      <a href="index.html">HOME</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+
+    <div class="nav-section nav-search">
+      <a href="cart.html">
+        <img src="images/cart3.webp" alt="Cart" class="cart-icon">
+      </a>
+    </div>
+  </nav>
+
+  <!-- Contact Form Section -->
+  <section class="contact-container">
+    <h1>We Can Help You!</h1>
+    <h3>Contact Us Today!</h3>
+    <form id="contactForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="formResponse"></div>
+
+    <div class="fun-fact">
+      🌟 Fun Fact: Our signs have been featured in over 15 community festivals across Canada!
+    </div>
+
+    <div class="contact-video">
+      <h2>Watch Our Story</h2>
+      <iframe src="images/OUR STORY.mp4" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <p>Founder: Lashe</p>
+    <p>Assistant: Abhi</p>
+    <p>Assistant: Charan</p>
+  </section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><strong>Location:</strong> 123 Main St, Winnipeg, MB, Canada</p>
+      <p><strong>Email:</strong> <a href="mailto:tagteamsigns@gmail.com">tagteamsigns@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+14165551234">+1 (416) 555-1234</a></p>
+    </div>
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+        <a href="https://www.instagram.com/tagteamsigns/?hl=en" target="_blank">
+      <img src="images/Instagram.webp" alt="Instagram" height="30px" width="30px;">
+      </a>
+
+        <a href="https://x.com/tagteamsigns" target="_blank">
+      <img src="images/X.png" alt="X/Twitter" height="30px" width="30px;">
+    </a>
+
+        <a href="https://www.facebook.com/p/TagTeamSigns-100067477160793/?_rdr" target="_blank">
+      <img src="images/Facebook.svg" alt="FaceBook"   height="30px" width="30px;" >
+    </a>
+    
+    
+    </div>
+  </div>
+  <p class="footer-bottom">© 2025 Tag Team Signs. All rights reserved.</p>
+</footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const response = document.getElementById("formResponse");
+      response.textContent = "🎉 Thanks for reaching out! We'll get back to you soon.";
+
+      // Simple confetti effect
+      for (let i = 0; i < 300; i++) {
+        const confetti = document.createElement("div");
+        confetti.style.position = "fixed";
+        confetti.style.left = Math.random() * 100 + "%";
+        confetti.style.top = Math.random() * 100 + "%";
+        confetti.style.width = "10px";
+        confetti.style.height = "10px";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.zIndex = 9999;
+        confetti.style.opacity = 0.7;
+        confetti.style.transition = "transform 5s ease-out, opacity 25s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.style.transform = `translateY(100vh)`;
+          confetti.style.opacity = 0;
+        }, 0);
+
+
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,901 @@
+/* reset all defult margins and paddings */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* main body styles - using sans-serif cuz its easier to read on screens */
+body {
+  font-family: Arial, sans-serif; /* sans-serif is clean for websites */
+  background-color: #FFD700; /* yellow background */
+  color: #000000; /* black text */
+  line-height: 1.6; /* space between lines */
+  letter-spacing: 0.5px; /* space between letters */
+  word-spacing: 1px; /* space between words */
+}
+
+/* navigation bar at top */
+nav {
+  display: flex; /* makes items sit next to each other */
+  justify-content: space-between; /* spaces items out */
+  align-items: center; /* centers vertically */
+  padding: 15px 30px; /* space inside nav */
+  background-color: #ffffff; /* white bg */
+  border-bottom: 2px solid #000000; /* black line at bottom */
+  position: sticky; /* sticks to top when scrolling */
+  top: 0px; /* stays at very top */
+  z-index: 1000; /* makes sure its above other stuff */
+  flex-wrap: wrap;
+}
+
+/* sections inside nav */
+.nav-section {
+  display: flex; /* flex layout */
+  align-items: center; /* centers items */
+}
+
+/* logo styles */
+.nav-logo img,
+.logo img {
+  height: 40px; /* logo height */
+  transition: transform 200ms ease; /* smooth hover effect */
+}
+
+/* logo hover effect */
+.nav-logo a:hover img {
+  transform: scale(1.2) rotate(2.5deg); /* grows and tilts */
+  cursor: pointer; /* shows hand cursor */
+  transform: scale(1.2) rotate(10deg);  /* when hovered on it tilts 10 degres */
+}
+
+/* navigation links */
+.nav-links {
+  gap: 25px; /* space between links */
+  flex: 1; /* takes up available space */
+  display: flex; /* flex layout */
+  justify-content: center; /* centers links */
+}
+
+/* link styles */
+.nav-links a {
+  text-decoration: none; /* no underline */
+  color: #000000; /* black text */
+  font-weight: bold; /* makes text bold */
+  font-size: 18px; /* text size */
+  transition: color 200ms ease, border-bottom 200ms ease; /* smooth hover */
+  padding-bottom: 3px; /* space below text */
+  border-bottom: 2px solid transparent; /* invisible border */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* link hover effect */
+.nav-links a:hover {
+  color: #FFD700; /* yellow text */
+  border-bottom: 2px solid #FFD700; /* yellow underline */
+  transform: scale(1.2) rotate(10deg);  /* when hovered on it tilts 10 degres */
+}
+
+/* cart icon */
+.cart-icon {
+  height: 40px; /* icon size */
+  vertical-align: middle; /* aligns properly */
+}
+
+.cart-icon:hover {
+  transform: scale(1.2) rotate(10deg);  /* when hovered on it tilts 10 degres */
+}
+
+/* cart counter bubble */
+.cart-container {
+  position: relative; /* for positioning counter */
+}
+
+
+
+
+.cart-counter {
+  position: absolute; /* sits on top */
+  top: -10px; /* positions above */
+  right: -10px; /* positions to right */
+  background: #FFD700; /* yellow bg */
+  color: #000000; /* black text */
+  border-radius: 50%; /* makes circle */
+  width: 20px; /* size */
+  height: 20px; /* size */
+  display: flex; /* centers number */
+  justify-content: center; /* centers horizontally */
+  align-items: center; /* centers vertically */
+  font-size: 12px; /* text size */
+  font-weight: bold; /* bold text */
+}
+
+/* search bar */
+.nav-search {
+  display: flex; /* flex layout */
+  align-items: center; /* centers vertically */
+}
+
+/* search input */
+.nav-search input {
+  padding: 6px 12px; /* space inside */
+  font-size: 16px; /* text size */
+  border: 2px solid #000000; /* black border */
+  border-radius: 4px; /* rounded corners */
+  outline: none; /* removes outline */
+  transition: border-color 300ms ease; /* smooth focus */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* search input focus */
+.nav-search input:focus {
+  border-color: #FFD700; /* yellow border when clicked */
+}
+
+/* hero section at top */
+.hero-banner {
+  display: flex; /* flex layout */
+  justify-content: space-between; /* spaces items */
+  align-items: center; /* centers vertically */
+  padding: 60px 100px; /* space inside */
+  background: #FFD700; /* yellow bg */
+}
+
+/* hero text */
+.hero-text {
+  max-width: 50%; /* takes half width */
+}
+
+/* main heading */
+.hero-text h1 {
+  font-size: 48px; /* big text */
+  margin-bottom: 16px; /* space below */
+  color: #222222; /* dark gray */
+  line-height: 1.2; /* space between lines */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* hero paragraph */
+.hero-text p {
+  font-size: 19px; /* medium text */
+  margin-bottom: 24px; /* space below */
+  color: #555555; /* gray text */
+  line-height: 1.5; /* space between lines */
+}
+
+/* buttons */
+.cta-button {
+  background: #ffff00; /* bright yellow */
+  color: #000000; /* black text */
+  padding: 12px 24px; /* space inside */
+  border: none; /* no border */
+  font-weight: bold; /* bold text */
+  text-decoration: none; /* no underline */
+  border-radius: 6px; /* rounded corners */
+  transition: 300ms ease; /* smooth hover */
+  transform: translateX(-20px); /* starts off screen */
+  opacity: 0; /* starts invisible */
+  animation: slideIn 500ms forwards 200ms; /* slides in */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* button hover */
+.cta-button:hover {
+  background: #000000; /* black bg */
+  color: #f2ff00; /* yellow text */
+}
+
+/* smaller button */
+.cta-button.small {
+  padding: 10px 20px; /* less space */
+  font-size: 14px; /* smaller text */
+}
+
+/* hero image */
+.hero-image img {
+  max-width: 500px; /* max size */
+  width: 100%; /* responsive */
+  border-radius: 12px; /* rounded corners */
+}
+
+/* featured section */
+.featured-section {
+  padding: 60px 100px; /* space inside */
+  background: #FFD700; /* yellow bg */
+  text-align: center; /* centers text */
+}
+
+/* section heading */
+.featured-section h2 {
+  font-size: 40px; /* large text */
+  margin-bottom: 32px; /* space below */
+  color: #333333; /* dark gray */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* card container */
+.category-cards {
+  display: flex; /* flex layout */
+  justify-content: center; /* centers cards */
+  gap: 30px; /* space between */
+  flex-wrap: wrap; /* wraps to next line */
+}
+
+/* product cards */
+.card {
+  background: #FFD700; /* yellow bg */
+  border: 1px solid #000000; /* black border */
+  border-radius: 12px; /* rounded corners */
+  padding: 20px; /* space inside */
+  width: 280px; /* fixed width */
+  transition: box-shadow 300ms ease; /* smooth hover */
+}
+
+/* card images */
+.card img {
+  width: 100%; /* full width */
+  border-radius: 10px; /* rounded corners */
+  margin-bottom: 10px; /* space below */
+}
+
+/* card headings */
+.card h3 {
+  color: #111111; /* very dark gray */
+}
+
+/* card hover */
+.card:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1); /* shadow effect */
+}
+
+/* about section */
+.about-section {
+  display: flex; /* flex layout */
+  justify-content: space-between; /* spaces items */
+  align-items: center; /* centers vertically */
+  padding: 60px 100px; /* space inside */
+  background: #FFD700; /* yellow bg */
+}
+
+/* about text */
+.about-text {
+  max-width: 50%; /* takes half width */
+}
+
+/* about heading */
+.about-text h2 {
+  font-size: 32px; /* large text */
+  margin-bottom: 16px; /* space below */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* about paragraph */
+.about-text p {
+  font-size: 16px; /* normal text */
+  color: #444444; /* gray text */
+  margin-bottom: 24px; /* space below */
+  line-height: 1.6; /* space between lines */
+}
+
+/* about image */
+.about-image img {
+  width: 400px; /* fixed width */
+  border-radius: 12px; /* rounded corners */
+}
+
+/* full width images */
+.full-width {
+  width: 100%; /* full width */
+  height: auto; /* keeps ratio */
+  margin: 20px 0px; /* space around */
+}
+
+/* basic section styles */
+section {
+  padding: 40px 20px; /* space inside */
+  text-align: center; /* centers text */
+}
+
+/* services section */
+.services {
+  max-width: 1000px; /* max width */
+  margin: auto; /* centers */
+}
+
+/* services heading */
+.services h2 {
+  font-size: 32px; /* large text */
+  font-weight: bold; /* bold text */
+  margin-bottom: 15px; /* space below */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* services text */
+.services p {
+  text-align: left; /* aligns left */
+  font-size: 16px; /* normal text */
+  line-height: 1.6; /* space between lines */
+  margin-bottom: 30px; /* space below */
+  word-spacing: 1px; /* space between words */
+}
+
+/* round service icons */
+.service-circles {
+  display: flex; /* flex layout */
+  justify-content: center; /* centers */
+  gap: 30px; /* space between */
+  flex-wrap: wrap; /* wraps to next line */
+  margin-top: 20px; /* space above */
+}
+
+/* individual circles */
+.circle {
+  background-color: white; /* white bg */
+  border-radius: 50%; /* makes circle */
+  width: 180px; /* size */
+  height: 180px; /* size */
+  display: flex; /* centers content */
+  align-items: center; /* centers vertically */
+  justify-content: center; /* centers horizontally */
+  font-size: 16px; /* text size */
+  text-align: center; /* centers text */
+  background-image: url("offer-image.jpg"); /* bg image */
+  background-size: cover; /* covers circle */
+  background-position: center; /* centers image */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* shadow */
+}
+
+/* shop container */
+.container {
+  display: flex; /* flex layout */
+  margin: 30px; /* space around */
+  gap: 30px; /* space between */
+  padding-top: 80px; /* space for nav */
+}
+
+/* font category rows */
+.font-family-row {
+  margin-bottom: 40px; /* space below */
+}
+
+/* category title */
+.font-family-title {
+  font-size: 24px; /* medium text */
+  margin-bottom: 15px; /* space below */
+  padding-left: 20px; /* space left */
+  font-weight: bold; /* bold text */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* products grid */
+.products {
+  display: flex; /* flex layout */
+  flex-wrap: wrap; /* wraps to next line */
+  gap: 20px; /* space between */
+  justify-content: center; /* centers items */
+  transform: translateX(-20px); /* starts off screen */
+  opacity: 0; /* starts invisible */
+  animation: slideIn 500ms forwards 200ms; /* slides in */
+}
+
+/* product cards */
+.product {
+  width: 180px; /* fixed width */
+  padding: 15px; /* space inside */
+  background-color: white; /* white bg */
+  border: 1px solid #cccccc; /* light border */
+  text-align: center; /* centers text */
+  border-radius: 10px; /* rounded corners */
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.05); /* subtle shadow */
+}
+
+/* product images */
+.product img {
+  width: 100%; /* full width */
+  height: auto; /* keeps ratio */
+  border-radius: 6px; /* rounded corners */
+  margin-bottom: 10px; /* space below */
+}
+
+/* product text */
+.product p,
+.product .price {
+  margin: 10px 0px 5px; /* space around */
+  font-size: 16px; /* normal text */
+  font-weight: bold; /* bold text */
+}
+
+/* product button */
+.product button {
+  background-color: #000000; /* black bg */
+  color: white; /* white text */
+  border: none; /* no border */
+  padding: 8px 15px; /* space inside */
+  border-radius: 4px; /* rounded corners */
+  cursor: pointer; /* hand cursor */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* product button hover */
+.product button:hover {
+  background-color: #343131; /* dark gray */
+}
+
+/* basic button styles */
+button {
+  padding: 8px 12px; /* space inside */
+  background-color: white; /* white bg */
+  border: 2px solid black; /* black border */
+  font-weight: bold; /* bold text */
+  cursor: pointer; /* hand cursor */
+  transition: background-color 200ms ease; /* smooth hover */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* button hover */
+button:hover {
+  background-color: black; /* black bg */
+  color: white; /* white text */
+}
+
+/* cart page */
+.cart-container {
+  max-width: 800px; /* max width */
+  margin: 30px auto; /* centers */
+  padding: 32px 20px; /* space inside */
+  background-color: white; /* white bg */
+  border: 2px solid black; /* black border */
+}
+
+/* cart items */
+.cart-item {
+  display: flex; /* flex layout */
+  align-items: center; /* centers vertically */
+  gap: 16px; /* space between */
+  border-bottom: 1px solid #cccccc; /* light line */
+  padding: 16px 0px; /* space around */
+}
+
+/* cart images */
+.cart-item img {
+  width: 80px; /* fixed width */
+  height: auto; /* keeps ratio */
+  border-radius: 5px; /* rounded corners */
+  margin-right: 20px; /* space right */
+}
+
+/* cart details */
+.cart-item-details {
+  flex-grow: 1; /* takes available space */
+  display: flex; /* flex layout */
+  flex-direction: column; /* stacks vertically */
+  justify-content: center; /* centers vertically */
+}
+
+/* price text */
+.cart-item-price {
+  font-weight: bold; /* bold text */
+}
+
+/* total price */
+.total {
+  font-size: 19px; /* medium text */
+  font-weight: bold; /* bold text */
+  margin-top: 16px; /* space above */
+  text-align: right; /* aligns right */
+}
+
+/* empty cart message */
+.empty-cart {
+  text-align: center; /* centers text */
+  font-size: 19px; /* medium text */
+  margin-top: 30px; /* space above */
+}
+
+/* clear cart button */
+.clear-cart-btn {
+  background-color: #e74c3c; /* red bg */
+  color: white; /* white text */
+  border: none; /* no border */
+  padding: 10px 20px; /* space inside */
+  border-radius: 6px; /* rounded corners */
+  cursor: pointer; /* hand cursor */
+  font-weight: bold; /* bold text */
+  margin-top: 20px; /* space above */
+  float: right; /* floats right */
+  transition: background-color 300ms ease; /* smooth hover */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* clear cart hover */
+.clear-cart-btn:hover {
+  background-color: #c0392b; /* dark red */
+}
+
+/* checkout button */
+.checkout-btn {
+  padding: 10px 15px; /* space inside */
+  background-color: #000000; /* black bg */
+  color: white; /* white text */
+  border: none; /* no border */
+  font-weight: bold; /* bold text */
+  cursor: pointer; /* hand cursor */
+  margin-top: 10px; /* space above */
+  transition: background-color 200ms ease; /* smooth hover */
+}
+
+/* checkout hover */
+.checkout-btn:hover {
+  background-color: #444444; /* dark gray */
+}
+
+/* footer */
+footer {
+  background-color: #000000; /* black bg */
+  color: #FFD700; /* yellow text */
+  padding: 40px 100px; /* space inside */
+  font-family: Arial, sans-serif; /* clean font */
+}
+
+/* footer container */
+.footer-container {
+  display: flex; /* flex layout */
+  justify-content: space-between; /* spaces items */
+  flex-wrap: wrap; /* wraps to next line */
+  gap: 10px; /* space between */
+  margin-bottom: 158px; /* space below */
+}
+
+/* footer sections */
+.footer-contact, 
+.footer-social {
+  max-width: 300px; /* max width */
+}
+
+/* footer headings */
+.footer-contact h3,
+.footer-social h3 {
+  margin-bottom: 15px; /* space below */
+  font-size: 20px; /* medium text */
+  font-weight: bold; /* bold text */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* footer text */
+.footer-contact p {
+  margin-bottom: 10px; /* space below */
+  font-size: 16px; /* normal text */
+  line-height: 1.5; /* space between lines */
+}
+
+/* footer links */
+.footer-contact a {
+  color: #FFD700; /* yellow text */
+  text-decoration: none; /* no underline */
+  transition: color 300ms ease; /* smooth hover */
+}
+
+/* footer link hover */
+.footer-contact a:hover {
+  color: #ffffff; /* white text */
+  text-decoration: underline; /* underline */
+}
+
+/* social icons */
+.footer-social a.social-icon {
+  font-size: 28px; /* large icons */
+  margin-right: 15px; /* space right */
+  color: #FFD700; /* yellow icons */
+  text-decoration: none; /* no underline */
+  transition: color 300ms ease; /* smooth hover */
+}
+
+/* social icon hover */
+.footer-social a.social-icon:hover {
+  color: #ffffff; /* white icons */
+  cursor: pointer; /* hand cursor */
+}
+
+/* footer bottom */
+.footer-bottom {
+  text-align: center; /* centers text */
+  font-size: 14px; /* small text */
+  border-top: 1px solid #444444; /* light line */
+  padding-top: 15px; /* space above */
+  color: #bbbbbb; /* light gray */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* custom sign form */
+.custom-sign-form {
+  padding: 60px 100px; /* space inside */
+  background-color: #FFD700; /* yellow bg */
+  text-align: center; /* centers text */
+}
+
+/* form container */
+.form-container {
+  max-width: 600px; /* max width */
+  margin: auto; /* centers */
+  background-color: #ffffff; /* yellow bg */
+  padding: 30px; /* space inside */
+  border: 2px solid #000000; /* black border */
+  border-radius: 10px; /* rounded corners */
+  transform: translateX(-20px); /* starts off screen */
+  opacity: 0; /* starts invisible */
+  animation: slideIn 500ms forwards 200ms; /* slides in */
+}
+
+/* form heading */
+.form-container h1 {
+  margin-bottom: 25px; /* space below */
+  font-size: 32px; /* large text */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* form labels */
+.form-container label {
+  display: block; /* makes own line */
+  margin-top: 15px; /* space above */
+  text-align: left; /* aligns left */
+  font-weight: bold; /* bold text */
+}
+
+/* form inputs */
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%; /* full width */
+  padding: 10px; /* space inside */
+  margin-top: 5px; /* space above */
+  border: 2px solid #000000; /* black border */
+  border-radius: 6px; /* rounded corners */
+  font-size: 16px; /* normal text */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* form button */
+.form-container button {
+  margin-top: 20px; /* space above */
+  width: 100%; /* full width */
+}
+
+/* contact section */
+.contact-section {
+  padding: 40px; /* space inside */
+  background-color: #FFD700; /* yellow bg */
+}
+
+/* contact container */
+.contact-container {
+  max-width: 800px; /* max width */
+  margin: 40px auto; /* centers */
+  padding: 30px; /* space inside */
+  background: linear-gradient(145deg, #ffffff, #f0f0f0); /* white gradient */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1); /* shadow */
+  border-radius: 10px; /* rounded corners */
+  transform: translateX(-20px); /* starts off screen */
+  opacity: 0; /* starts invisible */
+  animation: slideIn 500ms forwards 200ms; /* slides in */
+}
+
+/* contact heading */
+.contact-container h1 {
+  font-size: 32px; /* large text */
+  margin-bottom: 20px; /* space below */
+  text-align: center; /* centers text */
+  color: #000000; /* black text */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* contact labels */
+.contact-container label {
+  display: block; /* makes own line */
+  margin: 10px 0px 5px; /* space around */
+  font-size: 16px; /* normal text */
+}
+
+/* contact inputs */
+.contact-container input,
+.contact-container textarea {
+  width: 100%; /* full width */
+  padding: 12px; /* space inside */
+  font-size: 14px; /* normal text */
+  margin-bottom: 15px; /* space below */
+  border: 1px solid #cccccc; /* light border */
+  border-radius: 5px; /* rounded corners */
+  line-height: 1.5; /* space between lines */
+}
+
+/* contact button */
+.contact-container button {
+  padding: 12px 24px; /* space inside */
+  font-size: 16px; /* normal text */
+  background-color: #d4bd39; /* gold bg */
+  color: #ffffff; /* white text */
+  border: none; /* no border */
+  cursor: pointer; /* hand cursor */
+  border-radius: 5px; /* rounded corners */
+  transition: background-color 300ms ease; /* smooth hover */
+  letter-spacing: 0.5px; /* space between letters */
+}
+
+/* contact button hover */
+.contact-container button:hover {
+  background-color: #fbed20; /* bright gold */
+}
+
+/* about us page */
+.about-us {
+  padding: 40px 20px; /* space inside */
+  background-color: #ffffff; /* white bg */
+  text-align: center; /* centers text */
+}
+
+/* about container */
+.about-container {
+  max-width: 800px; /* max width */
+  margin: 0px auto; /* centers */
+}
+
+/* about heading */
+.about-container h1 {
+  font-size: 32px; /* large text */
+  margin-bottom: 20px; /* space below */
+  color: #333333; /* dark gray */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* about text */
+.about-container p {
+  font-size: 16px; /* normal text */
+  line-height: 1.6; /* space between lines */
+  color: #555555; /* gray text */
+  margin-bottom: 15px; /* space below */
+  word-spacing: 1px; /* space between words */
+}
+
+/* contact video */
+.contact-video {
+  margin-top: 30px; /* space above */
+  text-align: center; /* centers */
+}
+
+/* video iframe */
+.contact-video iframe {
+  width: 100%; /* full width */
+  height: 315px; /* fixed height */
+  border-radius: 10px; /* rounded corners */
+}
+
+/* fun fact box */
+.fun-fact {
+  margin-top: 40px; /* space above */
+  background-color: #fff3cd; /* light yellow */
+  padding: 15px; /* space inside */
+  border-left: 5px solid #ffeeba; /* yellow border */
+  font-style: italic; /* italic text */
+  border-radius: 5px; /* rounded corners */
+  line-height: 1.5; /* space between lines */
+}
+
+/* sign preview container */
+.sign-preview-container {
+  background: white; /* white bg */
+  padding: 20px; /* space inside */
+  border-radius: 8px; /* rounded corners */
+  margin-bottom: 20px; /* space below */
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1); /* shadow */
+}
+
+/* sign preview area */
+.sign-preview {
+  min-height: 120px; /* min height */
+  display: flex; /* flex layout */
+  justify-content: center; /* centers horizontally */
+  align-items: center; /* centers vertically */
+  border: 2px dashed #cccccc; /* dashed border */
+  margin-bottom: 15px; /* space below */
+  background: linear-gradient(135deg, #d2b48c, #8b5a2b); /* wood gradient */
+}
+
+/* preview text */
+.preview-text {
+  margin: 0px; /* no space */
+  font-size: 20px; /* medium text */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* text shadow */
+  letter-spacing: 1px; /* space between letters */
+}
+
+/* material options */
+.material-options {
+  display: flex; /* flex layout */
+  gap: 10px; /* space between */
+  margin-top: 8px; /* space above */
+}
+
+/* material option */
+.material-option {
+  display: flex; /* flex layout */
+  align-items: center; /* centers vertically */
+  padding: 8px 12px; /* space inside */
+  border: 1px solid #000000; /* light border */
+  border-radius: 4px; /* rounded corners */
+  cursor: pointer; /* hand cursor */
+  transition: all 200ms ease; /* smooth hover */
+}
+
+/* selected material */
+.material-option.selected {
+  border-color: #caae11; /* yellow border */
+  background: rgba(255, 215, 0, 0.1); /* light yellow */
+}
+
+/* slide in animation */
+@keyframes slideIn {
+  to {
+    transform: translateX(0px); /* ends at normal position */
+    opacity: 1; /* becomes visible */
+  }
+}
+
+/* color picker input */
+input[type="color"] {
+  height: 50px; /* size */
+  width: 100%; /* full width */
+  padding: 5px; /* space inside */
+  cursor: pointer; /* hand cursor */
+}
+
+/* responsive styles for mobile */
+@media screen and (max-width: 768px) {
+  /* stack nav items */
+  nav {
+    flex-direction: column; /* stacks vertically */
+    gap: 10px; /* space between */
+    align-items: stretch; /* full width */
+  }
+
+  /* wrap nav links */
+  .nav-links {
+    justify-content: center; /* centers */
+    flex-wrap: wrap; /* wraps to next line */
+    gap: 15px; /* space between */
+  }
+
+  /* full width container */
+  .container {
+    flex-direction: column; /* stacks vertically */
+    margin: 15px; /* less space */
+  }
+
+  /* grid layout for products */
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* responsive grid */
+  }
+
+  /* stack hero content */
+  .hero-banner,
+  .about-section {
+    flex-direction: column; /* stacks vertically */
+    padding: 40px 20px; /* less space */
+  }
+  
+  /* full width text */
+  .hero-text,
+  .about-text {
+    max-width: 100%; /* full width */
+    margin-bottom: 30px; /* space below */
+  }
+  
+  /* less padding */
+  .featured-section {
+    padding: 40px 20px; /* less space */
+  }
+  
+  /* less padding */
+  .custom-sign-form {
+    padding: 40px 20px; /* less space */
+  }
+}
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart | TagTeam Signs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+  <div class="nav-section nav-logo">
+    <a href="index.html">
+      <img src="images/Screenshot 2025-06-04 145907.png" alt="TagTeam Signs Logo">
+    </a>
+  </div>
+
+  <div class="nav-section nav-links">
+    <a href="shop.html">SHOP</a>
+    <a href="custom.html">CUSTOM</a>
+    <a href="index.html">HOME</a>
+    <a href="contact.html">CONTACT</a>
+  </div>
+
+  <div class="nav-section nav-search">
+    <a href="cart.html">
+      <img src="images/cart3.webp" alt="Cart" class="cart-icon">
+    </a>
+  </div>
+</nav>
+
+<!-- Cart Content -->
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <div class="total" id="total-price"></div>
+  <div class="empty-cart" id="empty-message" style="display: none;">Your cart is empty.</div>
+  <div class="cart-buttons">
+    <button id="clear-cart">Clear Cart</button>
+    <button id="checkout">Checkout</button>
+  </div>
+</div>
+
+
+
+<script>
+// Wait for the DOM to be fully loaded before executing
+document.addEventListener("DOMContentLoaded", () => {
+    // CART ELEMENTS - Cache all necessary DOM elements
+    const cartItemsContainer = document.getElementById("cart-items"); // Container for cart items
+    const totalPriceEl = document.getElementById("total-price");     // Element to display total price
+    const emptyMessage = document.getElementById("empty-message");   // Empty cart message
+    const checkoutBtn = document.getElementById("checkout");         // Checkout button
+    const clearCartBtn = document.getElementById("clear-cart");      // Clear cart button
+
+    // Load cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    /**
+     * Updates the cart display in the UI
+     */
+    function updateCartDisplay() {
+        // Clear existing cart items
+        cartItemsContainer.innerHTML = "";
+
+        // Handle empty cart state
+        if (cart.length === 0) {
+            emptyMessage.style.display = "block";  // Show empty message
+            totalPriceEl.textContent = "";         // Clear total price
+            return;                               // Exit function
+        }
+
+        // Hide empty message if cart has items
+        emptyMessage.style.display = "none";
+        let total = 0; // Initialize total price accumulator
+
+        // Process each item in the cart
+        cart.forEach(item => {
+            // Convert price string to number (remove $ and parse)
+            const itemPrice = parseFloat(item.price.replace("$", ""));
+            total += itemPrice; // Add to running total
+
+            // Create HTML for each cart item
+            const itemHTML = `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <p><strong>Product:</strong> ${item.name}</p>
+                        <p><strong>Sign Name:</strong> ${item.signName || "N/A"}</p>
+                        <p><strong>Description:</strong> ${item.signDescription || "N/A"}</p>
+                        <div class="cart-item-price">${item.price}</div>
+                    </div>
+                </div>
+            `;
+
+            // Add item HTML to container
+            cartItemsContainer.innerHTML += itemHTML;
+        });
+
+        // Update total price display (formatted to 2 decimal places)
+        totalPriceEl.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    // CLEAR CART FUNCTIONALITY
+    clearCartBtn.addEventListener("click", () => {
+        localStorage.removeItem("cart"); // Remove cart from storage
+        cart = [];                      // Empty local cart array
+        updateCartDisplay();            // Refresh UI
+    });
+
+    // CHECKOUT FUNCTIONALITY
+    checkoutBtn.addEventListener("click", () => {
+        // Prevent checkout if cart is empty
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        // Format all sign names and descriptions for confirmation
+        const signNames = cart.map(item => 
+            `• "${item.signName || "Unnamed"}" (${item.name})\n   Description: ${item.signDescription || "None"}`
+        ).join("\n\n");
+        
+        // Generate random delivery estimate (2-6 business days)
+        const businessDays = Math.floor(Math.random() * 5) + 2;
+
+        // Show comprehensive order confirmation
+        alert(`Order Confirmed!\n\nYour Signs:\n${signNames}\n\nYour order will arrive in ${businessDays} business days.`);
+
+        // Clear cart after successful checkout
+        localStorage.removeItem("cart");
+        cart = [];
+        updateCartDisplay();
+    });
+
+    // ADD TO CART FUNCTIONALITY (for products)
+    const addToCartButtons = document.querySelectorAll(".product button");
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            // Get product details from DOM
+            const productCard = button.closest(".product");
+            const name = productCard.querySelector("p").textContent;
+            const price = productCard.querySelector(".price").textContent;
+            const image = productCard.querySelector("img").getAttribute("src");
+
+            // Get custom sign details from user
+            const signName = prompt("What is the name of your sign?");
+            if (!signName) {
+                alert("You must enter a name for the sign.");
+                return;
+            }
+
+            const signDescription = prompt("Any description for your sign?");
+            if (!signDescription) {
+                alert("You must enter a description for the sign.");
+                return;
+            }
+
+            // Create new cart item with all details
+            const newItem = {
+                name: "Custom Sign",       // Could use product name instead
+                price: price,              // Product price
+                image: image,              // Product image
+                signName: signName,        // User's custom name
+                signDescription: signDescription, // User's description
+                material: material,       // Selected material
+                size: size + " inches"    // Formatted size
+            };
+
+            // Add to cart and update storage
+            cart.push(newItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Confirm addition to user
+            alert(`"${signName}" (${name}) added to cart.\nDescription: ${signDescription}`);
+            updateCartDisplay(); // Refresh cart UI
+        });
+    });
+
+    // Initialize cart display when page loads
+    updateCartDisplay();
+});
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><strong>Location:</strong> 123 Main St, Winnipeg, MB, Canada</p>
+      <p><strong>Email:</strong> <a href="mailto:tagteamsigns@gmail.com">tagteamsigns@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+14165551234">+1 (416) 555-1234</a></p>
+    </div>
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+        <a href="https://www.instagram.com/tagteamsigns/?hl=en" target="_blank">
+      <img src="images/Instagram.webp" alt="Instagram" height="30px" width="30px;">
+      </a>
+
+        <a href="https://x.com/tagteamsigns" target="_blank">
+      <img src="images/X.png" alt="X/Twitter" height="30px" width="30px;">
+    </a>
+
+        <a href="https://www.facebook.com/p/TagTeamSigns-100067477160793/?_rdr" target="_blank">
+      <img src="images/Facebook.svg" alt="FaceBook"   height="30px" width="30px;" >
+    </a>
+    
+    
+    </div>
+  </div>
+  <p class="footer-bottom">© 2025 Tag Team Signs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

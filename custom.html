@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Sign</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <!-- Left: Logo -->
+    <div class="nav-section nav-logo">
+      <a href="index.html">
+        <img src="images/Screenshot 2025-06-04 145907.png" alt="TagTeam Signs Logo" />
+      </a>
+    </div>
+
+    <!-- Center: Navigation Links -->
+    <div class="nav-section nav-links">
+      <a href="shop.html">SHOP</a>
+      <a href="custom.html">CUSTOM</a>
+      <a href="index.html">HOME</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
+
+    <!-- Right: Cart Icon -->
+    <div class="nav-section nav-search">
+      <a href="cart.html">
+        <img src="images/cart3.webp" alt="Cart" class="cart-icon" />
+      </a>
+    </div>
+  </nav>
+
+  <!-- Custom Sign Form -->
+  <section class="custom-sign-form">
+    <div class="form-container">
+      <h1>Design Your Custom Sign</h1>
+      
+      <!-- Preview Section -->
+      <div class="sign-preview-container">
+        <div class="sign-preview" id="signPreview">
+          <p class="preview-text">Your Text Here</p>
+        </div>
+      </div>
+      
+      <form action="submit-custom.html" method="POST">
+        <label for="signText">Sign Text:</label>
+        <input type="text" id="signText" name="signText" required />
+
+        <label for="font">Font Style:</label>
+        <select id="font" name="font">
+          <option value="Arial">Arial</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Franklin Gothic">Franklin Gothic</option>
+          <option value="News Gothic MT">News Gothic MT</option>
+          <option value="Aptos">Aptos</option>
+          <option value="Cambria">Cambria</option>
+          <option value="Calibri">Calibri</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="Times New Roman">Times New Roman</option>
+        </select>
+
+        <div>
+          <label for="color">Text Color:</label>
+          <input type="color" id="color" name="color" value="#000000"/>
+        </div>
+
+        <label for="size">Size (inches):</label>
+        <input type="number" id="size" name="size" min="1" max="100" required />
+
+        <div>
+          <label>Material:</label>
+          <div class="material-options">
+            <label class="material-option selected">
+              <input type="radio" name="material" value="wood" checked>
+              <span>Wood</span>
+            </label>
+            <label class="material-option">
+              <input type="radio" name="material" value="metal">
+              <span>Metal</span>
+            </label>
+            <label class="material-option">
+              <input type="radio" name="material" value="acrylic">
+              <span>Acrylic</span>
+            </label>
+          </div>
+        </div>
+
+        <label for="notes">Additional Notes:</label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Any specific details or requests..."></textarea>
+
+        <button type="submit" class="cta-button">Submit Design</button>
+      </form>
+    </div>
+  </section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><strong>Location:</strong> 123 Main St, Winnipeg, MB, Canada</p>
+      <p><strong>Email:</strong> <a href="mailto:tagteamsigns@gmail.com">tagteamsigns@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+14165551234">+1 (416) 555-1234</a></p>
+    </div>
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+        <a href="https://www.instagram.com/tagteamsigns/?hl=en" target="_blank">
+      <img src="images/Instagram.webp" alt="Instagram" height="30px" width="30px;">
+      </a>
+
+        <a href="https://x.com/tagteamsigns" target="_blank">
+      <img src="images/X.png" alt="X/Twitter" height="30px" width="30px;">
+    </a>
+
+        <a href="https://www.facebook.com/p/TagTeamSigns-100067477160793/?_rdr" target="_blank">
+      <img src="images/Facebook.svg" alt="FaceBook"   height="30px" width="30px;" >
+    </a>
+    
+    
+    </div>
+  </div>
+  <p class="footer-bottom">© 2025 Tag Team Signs. All rights reserved.</p>
+</footer>
+
+
+<script>
+// DOM Elements - Cache all elements we'll need to work with
+const signText = document.getElementById("signText");        // Text input field
+const fontSelect = document.getElementById("font");         // Font dropdown
+const colorPicker = document.getElementById("color");       // Color picker
+const sizeInput = document.getElementById("size");          // Size input
+const signPreview = document.getElementById("signPreview"); // Preview container
+const previewText = document.querySelector(".preview-text"); // Preview text element
+
+// REAL-TIME PREVIEW UPDATES
+// Add event listeners that update preview on any change:
+signText.addEventListener("input", updatePreview);   // When typing text
+fontSelect.addEventListener("change", updatePreview); // When changing font
+colorPicker.addEventListener("input", updatePreview); // When changing color
+sizeInput.addEventListener("input", updatePreview);   // When changing size
+
+// MATERIAL SELECTION EFFECTS
+// Add event listeners to all material radio buttons
+document.querySelectorAll(".material-option input").forEach(option => {
+  option.addEventListener("change", function() {
+    // First remove 'selected' class from all material options
+    document.querySelectorAll(".material-option").forEach(opt => {
+      opt.classList.remove("selected");
+    });
+    
+    // If this radio button is checked, add 'selected' to its parent
+    if(this.checked) {
+      this.parentElement.classList.add("selected");
+      updatePreview(); // Update the visual preview
+    }
+  });
+});
+
+// FORM SUBMISSION HANDLER
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop default form submission behavior
+
+  // Gather all customization values from form
+  const signName = document.getElementById("signText").value;
+  const font = document.getElementById("font").value;
+  const color = document.getElementById("color").value;
+  const size = document.getElementById("size").value;
+  const material = document.querySelector("input[name='material']:checked").value;
+  const notes = document.getElementById("notes").value;
+
+  // Set fixed values (could be dynamic in a real application)
+  const price = "$59.99"; // Flat price for all custom signs
+  const image = "images/custom.avif"; // Generic placeholder image
+  
+  // Build detailed description combining all customizations
+  const description = `Font: ${font}, Color: ${color}, Size: ${size} inches, Material: ${material}, Notes: ${notes}`;
+  
+  // Create cart item object with all details
+  const newItem = {
+    name: "Custom Sign",    // Generic product name
+    price: price,           // Fixed price
+    image: image,           // Placeholder image
+    signName: signName,     // User's custom text
+    signDescription: description // All customization details
+  };
+
+  // CART MANAGEMENT
+  // Get existing cart or empty array if none exists
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  // Add new item to cart
+  cart.push(newItem);
+  
+  // Save updated cart back to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // USER FEEDBACK AND REDIRECT
+  alert(`"${signName}" has been added to your cart!`);
+  window.location.href = "cart.html"; // Go to cart page
+});
+
+// HELPER FUNCTIONS
+
+/**
+ * Updates the live preview with current customization choices
+ */
+function updatePreview() {
+  // Update preview text (show placeholder if empty)
+  previewText.textContent = signText.value || "Your Text Here";
+  
+  // Apply selected font
+  previewText.style.fontFamily = fontSelect.value;
+  
+  // Apply selected color
+  previewText.style.color = colorPicker.value;
+  
+  // Scale font size (dividing by 2 to fit preview better)
+  previewText.style.fontSize = `${parseInt(sizeInput.value)/2}px`;
+  
+  // Update preview background based on selected material
+  const material = document.querySelector("input[name='material']:checked").value;
+  signPreview.style.background = getMaterialPreviewColor(material);
+}
+
+/**
+ * Returns a visual representation of each material type
+ * @param {string} material - The selected material name
+ * @returns {string} CSS gradient/color for the preview
+ */
+function getMaterialPreviewColor(material) {
+  const colors = {
+    wood: "linear-gradient(135deg, #d2b48c, #8b5a2b)",       // Tan to brown gradient
+    metal: "linear-gradient(135deg, #c0c0c0, #808080)",      // Silver to gray gradient
+    acrylic: "linear-gradient(135deg, rgba(0,150,255,0.2), rgba(0,200,255,0.3))" // Semi-transparent blue
+  };
+  return colors[material] || "#f9f9f9"; // Default light gray if material not found
+}
+</script>
+
+</body>
+</html>
